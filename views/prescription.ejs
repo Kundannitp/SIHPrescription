@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Write Prescription</title>
+</head>
+<body>
+    <form action="/" method="POST">
+    
+        Name: <span id="Pname" name="nameOfPerson"></span><br>
+        Age/sex:  <span id="ageandsex" name="age"></span><br>
+        Date: <span id="date" name="date"></span><br>
+        Symptoms: 
+        <ol id="symptoms" name="symptoms">
+        </ol><br>
+        Diagnosis: 
+        <ol id="diagnosis" name="diagnosis">
+        </ol><br>
+        Prescription:
+        <ol id="prescription" name="prescription"></ol><br>
+        Advices:
+        <ol id="advice" name="advice"></ol><br>
+        <br>
+        <input type="submit" value="next">
+    </form>
+    <button id="buttontospeak">Tap to speak</button>
+    <script src="script/datacheck.js"></script>
+    <script src="script/prescription.js"></script>
+</body>
+</html>

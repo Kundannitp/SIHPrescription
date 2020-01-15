@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-signin-client_id" content="YOUR_CLIENT_ID.apps.googleusercontent.com">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Dancing+Script&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Oxygen&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Abril+Fatface&display=swap" rel="stylesheet">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="top_div">
+        <div class="top_left">PRANKS</div>
+        <div class="write_blogs" id="text1". onclick="signinclicked()">SIGNIN</div>
+        <script>
+            function signinclicked() {
+                var text = document.getElementById("text1").textContent;
+                var text1 = "SIGNIN";
+                if (text.trim() === text1.trim()) {
+                    document.getElementById('id01').style.display = 'block';
+                } else {
+                    window.location.href = '/logout';
+                }
+            }
+        </script>
+    </div>
+    <div class="main_div1">
+        <div class="div_dis">Generate Prescription</div>
+        <div class="div_dis">Profile</div>
+    </div>
+    <div class="main_div2">
+
+        <div class="blogs">
+                 <div class="divblog1">DoctorName:</div>
+                 <div id="Dname" name="nameOfDoctor" class="div2"></div><br>
+                 <div>LastDegree:</div>
+                 <div id="Ldegree" name="degree" class="div2"></div><br>
+                <div class="divblog1">PatientName:</div> <div id="Pname" type="text" name="nameOfPerson" class="div2"></div><br>
+                <div>Age&Sex:</div> <div id="ageandsex" name="age" class="div2"></div><br>
+                <div>Date:</div> <div id="date" name="date" class="div2"></div><br>
+                <table>
+                    <tr>
+                        <th>#</th>
+                        <th>Parameter</th>
+                        <th>Discription</th>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>Symptoms</td>
+                        <td id="symptomtable">
+                            <ol id="symptoms">
+                            </ol>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Diagnosis</td>
+                        <td id="diagnosistable">
+                            <ol id="diagnosis" start="1">
+                               
+                            </ol>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Prescriptions</td>
+                        <td id="prescriptiontable">
+                            <ol id="prescription"></ol>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>Advices</td>
+                        <td id="advicetable">
+                            <ol id="advice"></ol>
+                        </td>
+                    </tr>
+                </table>
+        </div>
+        <div class="events_div">
+            <div style="background-color: #12cad6; font-size: 35px; color: beige; text-align: center;">Tap to Speak
+            </div >
+            <i id="buttontospeak" class="fa fa-microphone"
+                style="font-size:100px;color:#3282b8 ; margin-top:25%; margin-left: 40%;"></i>
+        </div>
+        <div class="footer">
+            <form action="/" method="POST" id="form1" enctype="multipart/form-data">
+                <input type="file" name="myImage">
+                <input type="text" id="docname1" name="docname1" style="display: none;">
+                <input type="text" id="degree1" name="degree1" style="display: none;">
+                <input type="text" id="patname1" name="patname1" style="display: none;">
+                <input type="text" id="age1" name="age1" style="display: none;">
+                <input type="text" id="date1" name="date1" style="display: none;">
+                <input type="text" id="spt" name="symptoms1" style="display: none;">
+                <input type="text" id="dpt" name="diagnosis1" style="display: none;">
+                <input type="text" id="ppt" name="prescription1" style="display: none;">
+                <input type="text" id="apt" name="advice1" style="display: none;">
+            </form>
+            <button type="submit" form="form1" style="font-size: 25px;" value="Submit">GeneratePDF</button>
+        </div>
+    </div>
+
+    <!-- loginform -->
+    <%- include('login'); -%>
+    <!-- loginEnds -->
+
+    <!-- SignUpStarts -->
+    <%- include('signup'); -%>
+    <!-- sign up ends -->
+    <script>
+        // Get the modal
+        var modal2 = document.getElementById('id02');
+        var modal3 = document.getElementById('id01');
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function (event) {
+            if (event.target == modal2) {
+                modal2.style.display = "none";
+            }
+            if (event.target == modal3) {
+                modal3.style.display = "none";
+            }
+        }
+    </script>
+
+    <script src="script/datacheck.js"></script>
+    <script src="script/prescription.js"></script>
+</body>
+
+</html>

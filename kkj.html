@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <mate charest="utf-8" />
+    <style>
+        table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+        height: 50%;
+        }
+
+        td, th {
+        border: 1px solid #a7a5a5;
+        text-align: left;
+        padding: 8px;
+        }
+
+        tr:nth-child(even) {
+        background-color: #dddddd;
+        }
+        img{
+            width: 150px;
+            height: 200px;
+            border: 4px solid black;
+        }
+    </style>
+    <title></title>
+</head>
+
+<body>
+    <hr>
+    <h2>
+        {{#each doctorname}}
+        DoctorName: {{this}}
+        {{/each}}
+    </h2>
+    <h2>
+        {{#each degree}}
+        Degree: {{this}}
+        {{/each}}
+    </h2>
+    <h2>{{#each patientname}}
+           PatientName: {{this}}
+        {{/each}}
+    </h2>
+    <h2>
+        {{#each age}}
+        Age&Sex: {{this}}
+        {{/each}}
+    </h2>
+    <h2>
+        {{#each date}}
+        Date: {{this}}
+        {{/each}}
+    </h2>
+    <br>
+    <br>
+    <hr>
+    <br>
+    <br><br><br>
+    <table>
+        <tr>
+            <th>Sno.</th>
+            <th>Parameters</th>
+            <th>Discription</th>
+        </tr>
+        <tr>
+            <td>1.</td>
+            <td>Symptoms</td>
+            <td>
+                <ol>
+                    {{#each Symptoms}}
+                    <li>{{this}}</li>
+                    <br>
+                    {{/each}}
+                </ol>
+            </td>
+        </tr>
+        <tr>
+            <td>2.</td>
+            <td>Diagnosis</td>
+            <td>
+                <ol>
+                    {{#each Diagnosis}}
+                    <li>{{this}}</li>
+                    <br>
+                    {{/each}}
+                </ol>
+            </td>
+        </tr>
+        <tr>
+            <td>3.</td>
+            <td>Prescriptions</td>
+            <td>
+                <ol>
+                    {{#each Prescriptions}}
+                    <li>{{this}}</li>
+                    <br>
+                    {{/each}}
+                </ol>
+            </td>
+        </tr>
+        <tr>
+            <td>4.</td>
+            <td>Advices</td>
+            <td>
+                <ol>
+                    {{#each Advices}}
+                    <li>{{this}}</li>
+                    <br>
+                    {{/each}}
+                </ol>
+            </td>
+        </tr>
+    </table>
+    {{#each imgsrc}}
+    <img src={{this}} alt="Kundan">
+    {{/each}}
+</body>
+
+</html>
