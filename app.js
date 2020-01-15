@@ -1,10 +1,13 @@
+require('dotenv').config();
 const express = require("express");
 const bodyParser = require("body-parser");
 const ejs=require('ejs');
 const multer =require('multer');
 const path = require('path');
-var file1;
+const nodemailer=require('nodemailer');
 
+var file1;
+var nameofdoc;
 //Required package
 var pdf = require("pdf-creator-node");
 var fs = require('fs');
@@ -95,7 +98,7 @@ app.post('/',(req, res) =>{
                  
        
 
-    var nameofdoc = req.body.docname1;
+    nameofdoc = req.body.docname1;
     var degree1 = req.body.degree1;
     var nameofpat = req.body.patname1;
     var age=req.body.age1;
@@ -189,7 +192,41 @@ app.get('/pdfs',function(req,res){
 app.post('/sendEmail',function(req,res){
     var personEmail=req.body.email;
     //pdf file are in pdfs folder and person email is the mail to send
-    
+    //Step 1
+let transporter=nodemailer.createTransport(
+    {
+        service:'gmail',
+        auth:{
+            user: process.env.EMAIL,
+            pass: process.env.PASSWORD
+        }
+    }
+);
+
+//Step 2
+let mailOptions={
+    from:'bytpphyte@gmail.com',
+    to:personEmail,
+    cc:'bytpphyte@gmail.com',
+    subject:'Regarding Registration as assured doctor in PRANKS',
+    text:'This is your Prescription for the appointment with '+nameofdoc,
+    attachments: [
+        {
+            filename:'output.pdf',
+            path:'./pdfs/output.pdf'
+        }
+    ]
+}
+
+//Step 3
+transporter.sendMail(mailOptions,function(err,data){
+    if(err){
+        console.log("Error Occurs"+err);
+    }
+    else{
+        console.log("Email Sent!!!");
+    }
+});
     
     console.log(personEmail);
     res.redirect('edit');
