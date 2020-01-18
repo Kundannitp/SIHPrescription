@@ -12,6 +12,12 @@ var symptomvar=1;
 var diagnosisvar=1;
 var prescriptionvar=1;
 var advicevar=1;
+// var dataseting = document.querySelector("#divtemp");
+// var str="";
+// for(var i=0;i<nameofperson.length;i++)
+//    str+=nameofperson[i];
+
+// dataseting.textContent=str;
 
 var utc = new Date().toJSON().slice(0, 10).replace(/-/g, '/');
 date.textContent =utc;
