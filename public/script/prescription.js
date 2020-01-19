@@ -39,8 +39,10 @@ date.textContent =utc;
      var command = event.results[last][0].transcript;
      console.log(command);
     //  message.textContent = 'Voice Input: ' + command + '.';
-
-    var commandtest = command.toLowerCase();
+    
+    var commandtest1 = command.toLowerCase();
+    var recordArr = commandtest1.split("and");
+    recordArr.forEach(commandtest => {
     var yearbool=true;
     if (commandtest.indexOf('dr') != -1 || commandtest.indexOf('dr.') != -1||commandtest.indexOf('doctor')!=-1){
         
@@ -98,13 +100,40 @@ date.textContent =utc;
     }
 
     var namebool=true,symptomsbool=true,diagnosisbool=true,prescriptionbool=true;
-    if(yearbool)
-    for(var i=0;i<nameofperson.length;i++){
-        if ((commandtest.indexOf(nameofperson[i]))!=-1){
-            namespan.textContent=command;
-            namebool=false;
-            break;
+    if(yearbool){
+        // var namedata=commandtest.split(" ");
+        // var dts="";
+        // for(var j=0;j<namedata.length;j++){
+        //     dts = dts+namedata+" ";
+        // }
+        // document.querySelector('#divtemp').textContent=dts;
+        var namedata=new Array();
+        namedata.push("");
+        for(var j=0;j<commandtest.length;j++){
+            if(commandtest[j]==" "){
+                namedata.push("");
+            }
+            else{
+                namedata[namedata.length-1]+=commandtest[j];
+            }
         }
+
+        // var dts = "";
+        // for(var j=0;j<namedata.length;j++){
+        //     dts = dts+namedata[j]+"";
+        // }
+        // document.querySelector('#divtemp').textContent=dts;
+        
+        for(var j=0;j<namedata.length;j++){
+            for (var i = 0; i < nameofperson.length; i++) {
+                if (namedata[j]===nameofperson[i]) {
+                    namespan.textContent = command;
+                    namebool = false;
+                    break;
+                }
+            }
+        }
+        
     }
     if(yearbool&&namebool){
         for(var i=0;i<symptoms.length;i++){
@@ -154,6 +183,7 @@ date.textContent =utc;
 
     }
     setAllData();
+     });
     
  };
 

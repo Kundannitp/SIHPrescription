@@ -5,33 +5,49 @@ const ejs=require('ejs');
 const multer =require('multer');
 const path = require('path');
 const nodemailer=require('nodemailer');
-const datacheck=require('./public/script/datacheck.js');
+const firebase =require('firebase');
+
+
+
+ var firebaseConfig = {
+     apiKey: "AIzaSyBD5rbTPGCg2KSI_BTdO5p4IssW8JhNwr8",
+     authDomain: "trialsih.firebaseapp.com",
+     databaseURL: "https://trialsih.firebaseio.com",
+     projectId: "trialsih",
+     storageBucket: "trialsih.appspot.com",
+     messagingSenderId: "703993460993",
+     appId: "1:703993460993:web:4800ad93859442ff3f8300"
+ };
+ // Initialize Firebase
+ firebase.initializeApp(firebaseConfig);
+
+
 const app = express();
 
 
 
-var mysql = require('mysql');
+// var mysql = require('mysql');
 
-var con = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "12345",
-    database: "sihdataset"
-});
+// var con = mysql.createConnection({
+//     host: "localhost",
+//     user: "root",
+//     password: "12345",
+//     database: "sihdataset"
+// });
 
-con.connect(function (err) {
-    if (err) throw err;
-    con.query("SELECT * FROM datasets", function (err, result, fields) {
-        if (err) throw err;
-        for(var i=0;i<result.length;i++)
-        {
-            datacheck.nameofperson.push(result[i].nameofpat);
-            // console.log(result[i].nameofpat+" "+result[i].symptoms+" "+result[i].diagnosis);
+// con.connect(function (err) {
+//     if (err) throw err;
+//     con.query("SELECT * FROM datasets", function (err, result, fields) {
+//         if (err) throw err;
+//         for(var i=0;i<result.length;i++)
+//         {
+//             datacheck.nameofperson.push(result[i].nameofpat);
+//             // console.log(result[i].nameofpat+" "+result[i].symptoms+" "+result[i].diagnosis);
             
            
-        }
-    });
-});
+//         }
+//     });
+// });
 
 
 
@@ -259,6 +275,29 @@ transporter.sendMail(mailOptions,function(err,data){
     
     console.log(personEmail);
     res.redirect('edit');
+});
+
+
+
+
+app.post('/signup',function(req,res){
+
+    var ureg = req.body.username;
+    var otp=req.body.otp;
+    var password=req.body.password;
+
+    firebase.database().ref('otps/').once('value').then(function (snapshot) {
+        var otpcome = (snapshot.val().ureg) || 'Anonymous';
+        if(otp===otpcome){
+
+        }
+    });
+
+    firebase.database().ref('doctors/' + regno).set(
+        OtpString,
+        function (error) {}
+
+        );
 });
 
 
